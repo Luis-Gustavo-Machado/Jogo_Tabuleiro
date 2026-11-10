@@ -116,3 +116,17 @@ venceu = False
 for i in range(3):
     if tabuleiro [i][0] == simbolo and tabuleiro [i][1] == simbolo and tabuleiro [i][2] == simbolo:
         venceu == True
+
+#Verificação das colunas
+for j in range (3):
+
+    if tabuleiro[0][j] == simbolo and tabuleiro[1][j] == simbolo and tabuleiro:
+        venceu = True
+
+# Verifica as diagonais
+if tabuleiro[0][0] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][2] == simbolo:
+    venceu = True
+
+if tabuleiro[0][2] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][0] == simbolo:
+    venceu = True
+
