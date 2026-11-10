@@ -111,3 +111,8 @@ while jogada_valida == False:
 
 # Verificação de vitória
 venceu = False
+
+# Verificação das linhas
+for i in range(3):
+    if tabuleiro [i][0] == simbolo and tabuleiro [i][1] == simbolo and tabuleiro [i][2] == simbolo:
+        venceu == True
