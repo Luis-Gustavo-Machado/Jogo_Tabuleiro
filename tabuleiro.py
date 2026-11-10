@@ -129,3 +129,11 @@ if tabuleiro[0][0] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][2]
 
 if tabuleiro[0][2] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][0] == simbolo:
     venceu = True
+                
+# Se alguém venceu
+if venceu == True:
+
+    if jogador == 1:
+        print("\nJogador 1 venceu a partida!")
+        vitorias_j1 = vitorias_j1 + 1
+        vitorias_serie_j1 = vitorias_serie_j1 + 1
