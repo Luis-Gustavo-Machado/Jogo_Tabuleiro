@@ -53,87 +53,97 @@ while opcao != "4":
 
 print("\n========== NOVA PARTIDA ==========")
 
-# Loop principal da partida
-while partida_finalizada == False:
+while venceu == False and jogadas < 9:
 
-# Exibe o tabuleiro usando for aninhado
- print("\n      COLUNAS")
-print("       1   2   3")
+    # Exibe o tabuleiro com for aninhado
+    for i in range(3):
+        for j in range(3):
+            print("|", tabuleiro[i][j], end=" ")
+        print("|")
 
-for i in range(3):
-    print("Linha", i + 1, end=" | ")
+        if i < 2:
+            print("------------")
 
-    for j in range(3):
-        print(tabuleiro[i][j], end=" | ")
+    print("\nVez do jogador:", jogador)
 
-    print()
+    jogada_valida = False
 
-# Define o símbolo do jogador
-if jogador == 1:
-    simbolo = "X"
-    print("\nVez do Jogador 1 (X)")
-else:
-    simbolo = "O"
-    print("\nVez do Jogador 2 (O)")
+    # Repete ate o jogador informar uma posicao valida
+    while jogada_valida == False:
 
-# Validação da jogada
-jogada_valida = False
+        entrada = input("Escolha uma posicao de 1 a 9: ")
 
-while jogada_valida == False:
+        entrada_valida = False
 
-    entrada = input("Escolha uma posição de 1 a 9: ")
+        # Verifica se a entrada esta entre 1 e 9
+        for n in range(1, 10):
 
-    posicao_encontrada = False
+            if entrada == str(n):
+                entrada_valida = True
+                posicao = n
 
-    # Confere se a entrada é um número válido
-    for n in range(1, 10):
+        if entrada_valida == False:
 
-        if entrada == str(n):
-
-            posicao_encontrada = True
-
-            linha = (n - 1) // 3
-            coluna = (n - 1) % 3
-
-    if posicao_encontrada == True:
-
-        # Confere se a casa está livre
-        if tabuleiro[linha][coluna] != "X" and tabuleiro[linha][coluna] != "O":
-
-            tabuleiro[linha][coluna] = simbolo
-            jogada_valida = True
+            print("Entrada invalida! Digite um numero de 1 a 9.")
 
         else:
-            print("Essa posição já está ocupada!")
 
-    else:
-        print("Entrada inválida! Digite de 1 a 9.")
+            # Converte a posicao em linha e coluna
+            linha = (posicao - 1) // 3
+            coluna = (posicao - 1) % 3
 
-# Verificação de vitória
-venceu = False
+            # Verifica se a casa ja esta ocupada
+            if (tabuleiro[linha][coluna] == "X" or
+                tabuleiro[linha][coluna] == "O"):
 
-# Verificação das linhas
-for i in range(3):
-    if tabuleiro [i][0] == simbolo and tabuleiro [i][1] == simbolo and tabuleiro [i][2] == simbolo:
-        venceu == True
+                print("Essa posicao ja esta ocupada!")
 
-#Verificação das colunas
-for j in range (3):
+            else:
 
-    if tabuleiro[0][j] == simbolo and tabuleiro[1][j] == simbolo and tabuleiro:
+                tabuleiro[linha][coluna] = jogador
+                jogadas = jogadas + 1
+                jogada_valida = True
+
+    # Verificacao das linhas e colunas
+    for i in range(3):
+
+        # Verifica uma linha
+        if (tabuleiro[i][0] == jogador and
+            tabuleiro[i][1] == jogador and
+            tabuleiro[i][2] == jogador):
+
+            venceu = True
+
+        # Verifica uma coluna
+        if (tabuleiro[0][i] == jogador and
+            tabuleiro[1][i] == jogador and
+            tabuleiro[2][i] == jogador):
+
+            venceu = True
+
+    # Verificacao da diagonal principal
+    if (tabuleiro[0][0] == jogador and
+        tabuleiro[1][1] == jogador and
+        tabuleiro[2][2] == jogador):
+
         venceu = True
 
-# Verifica as diagonais
-if tabuleiro[0][0] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][2] == simbolo:
-    venceu = True
+    # Verificacao da diagonal secundaria
+    if (tabuleiro[0][2] == jogador and
+        tabuleiro[1][1] == jogador and
+        tabuleiro[2][0] == jogador):
 
-if tabuleiro[0][2] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][0] == simbolo:
-    venceu = True
-                
-# Se alguém venceu
-if venceu == True:
+        venceu = True
 
-    if jogador == 1:
-        print("\nJogador 1 venceu a partida!")
-        vitorias_j1 = vitorias_j1 + 1
-        vitorias_serie_j1 = vitorias_serie_j1 + 1
+    # Guarda quem venceu
+    if venceu == True:
+
+        jogador_vencedor = jogador
+
+    # Troca o jogador se ainda nao houve vitoria
+    else:
+
+        if jogador == "X":
+            jogador = "O"
+        else:
+            jogador = "X"
