@@ -224,3 +224,8 @@ print("\n===== PLACAR DO CAMPEONATO =====")
 print("Vitorias de X:", vitorias_serie_j1)
 print("Vitorias de O:", vitorias_serie_j2)
 print("Partidas realizadas:", partidas_serie)
+
+ # Limpa a matriz usando for aninhado
+for i in range(3):
+    for j in range(3):
+        tabuleiro[i][j] = " "
