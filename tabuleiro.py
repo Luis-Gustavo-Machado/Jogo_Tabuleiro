@@ -1,3 +1,6 @@
+# PARTE 1 - JOGABILIDADE E VALIDACAO
+# RESPONSAVEL: Luis Gustavo
+
 opcao = ""
 
 # Placar acumulado
@@ -51,6 +54,10 @@ while opcao != "4":
 
             print("\n===== NOVA PARTIDA =====")
 
+
+# PARTE 2 - JOGABILIDADE E VALIDACAO
+# RESPONSAVEL: Wagner Vinícius
+
 while venceu == False and jogadas < 9:
 
     # Exibe o tabuleiro com for aninhado
@@ -59,8 +66,10 @@ while venceu == False and jogadas < 9:
             print("|", tabuleiro[i][j], end=" ")
         print("|")
 
+        print()
+
         if i < 2:
-            print("------------")
+            print("             -----------")
 
     print("\nVez do jogador:", jogador)
 
