@@ -218,3 +218,9 @@ print("\n===== PLACAR GERAL =====")
 print("Vitorias do jogador X:", vitorias_j1)
 print("Vitorias do jogador O:", vitorias_j2)
 print("Empates:", empates_total)
+
+# Exibe o placar da serie
+print("\n===== PLACAR DO CAMPEONATO =====")
+print("Vitorias de X:", vitorias_serie_j1)
+print("Vitorias de O:", vitorias_serie_j2)
+print("Partidas realizadas:", partidas_serie)
