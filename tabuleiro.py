@@ -147,3 +147,25 @@ while venceu == False and jogadas < 9:
             jogador = "O"
         else:
             jogador = "X"
+
+#Exibe o tabuleiro final
+
+print("\n===== TABULEIRO FINAL =====")
+print("        COLUNAS")
+print("        1   2   3")
+
+for i in range(3):
+
+    print("LINHA", i + 1, end="  | ")
+
+    for j in range(3):
+
+        print(tabuleiro[i][j], end="")
+
+        if j < 2:
+            print(" | ", end="")
+
+    print()
+
+    if i < 2:
+        print("             -----------")
