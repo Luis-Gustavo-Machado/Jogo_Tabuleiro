@@ -180,3 +180,35 @@ while venceu == False and jogadas < 9:
             print("             -----------")
 
 partidas_serie = partidas_serie + 1
+
+if venceu == True:
+
+    print("\nJogador", jogador_vencedor, "venceu a partida!")
+
+    if jogador_vencedor == "X":
+
+        vitorias_j1 = vitorias_j1 + 1
+        vitorias_serie_j1 = vitorias_serie_j1 + 1
+
+    else:
+
+        vitorias_j2 = vitorias_j2 + 1
+        vitorias_serie_j2 = vitorias_serie_j2 + 1
+
+else:
+
+    # Conta as casas livres usando for aninhado
+    casas_livres = 0
+
+    for i in range(3):
+        for j in range(3):
+
+            if (tabuleiro[i][j] != "X" and
+                tabuleiro[i][j] != "O"):
+
+                casas_livres = casas_livres + 1
+
+    if casas_livres == 0:
+
+        print("\nA partida terminou empatada!")
+        empates_total = empates_total + 1
