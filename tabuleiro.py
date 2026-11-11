@@ -167,4 +167,6 @@ for i in range(3):
     print()
 
     if i < 2:
-        print("             -----------")
+        print("              -----------")
+
+partidas_serie = partidas_serie + 1
