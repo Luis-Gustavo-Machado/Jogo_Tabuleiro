@@ -84,140 +84,37 @@ while True:
                         tabuleiro[linha][coluna] = simbolo
                         jogadas = jogadas + 1
 
-            # =================================================
-            # PARTE 2 - JOGABILIDADE E VALIDACAO
-            # RESPONSAVEL: INTEGRANTE 2
-            # =================================================
+            # VERIFICAR VITÓRIA NAS LINHAS
+                        for i in range(3):
+                            if tabuleiro[i][0] == simbolo and tabuleiro[i][1] == simbolo and tabuleiro[i][2] == simbolo:
+                                vencedor = jogador
 
-            while venceu == False and jogadas < 9:
+                        # VERIFICAR VITÓRIA NAS COLUNAS
+                        for j in range(3):
+                            if tabuleiro[0][j] == simbolo and tabuleiro[1][j] == simbolo and tabuleiro[2][j] == simbolo:
+                                vencedor = jogador
 
-                # Exibe o tabuleiro com for aninhado
-                print("\n        COLUNAS")
-                print("        1   2   3")
+                        # VERIFICAR VITÓRIA NAS DIAGONAIS
+                        if tabuleiro[0][0] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][2] == simbolo:
+                            vencedor = jogador
 
-                for i in range(3):
+                        if tabuleiro[0][2] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][0] == simbolo:
+                            vencedor = jogador
 
-                    print("LINHA", i + 1, end="  | ")
+                        # TROCAR DE JOGADOR
+                        if vencedor == 0:
+                            if jogador == 1:
+                                jogador = 2
+                            else:
+                                jogador = 1
 
-                    for j in range(3):
-
-                        print(tabuleiro[i][j], end="")
-
-                        if j < 2:
-                            print(" | ", end="")
-
-                    print()
-
-                    if i < 2:
-                        print("             -----------")
-
-                print("\nVez do jogador:", jogador)
-
-                jogada_valida = False
-
-                # Repete ate o jogador informar uma posicao valida
-                while jogada_valida == False:
-
-                    entrada = input("Escolha uma posicao de 1 a 9: ")
-
-                    entrada_valida = False
-
-                    # Verifica se a entrada esta entre 1 e 9
-                    for n in range(1, 10):
-
-                        if entrada == str(n):
-                            entrada_valida = True
-                            posicao = n
-
-                    if entrada_valida == False:
-
-                        print("Entrada invalida! Digite um numero de 1 a 9.")
-
-                    else:
-
-                        # Converte a posicao em linha e coluna
-                        linha = (posicao - 1) // 3
-                        coluna = (posicao - 1) % 3
-
-                        # Verifica se a casa ja esta ocupada
-                        if (tabuleiro[linha][coluna] == "X" or
-                            tabuleiro[linha][coluna] == "O"):
-
-                            print("Essa posicao ja esta ocupada!")
-
-                        else:
-
-                            tabuleiro[linha][coluna] = jogador
-                            jogadas = jogadas + 1
-                            jogada_valida = True
-
-                # Verificacao das linhas e colunas
-                for i in range(3):
-
-                    # Verifica uma linha
-                    if (tabuleiro[i][0] == jogador and
-                        tabuleiro[i][1] == jogador and
-                        tabuleiro[i][2] == jogador):
-
-                        venceu = True
-
-                    # Verifica uma coluna
-                    if (tabuleiro[0][i] == jogador and
-                        tabuleiro[1][i] == jogador and
-                        tabuleiro[2][i] == jogador):
-
-                        venceu = True
-
-                # Verificacao da diagonal principal
-                if (tabuleiro[0][0] == jogador and
-                    tabuleiro[1][1] == jogador and
-                    tabuleiro[2][2] == jogador):
-
-                    venceu = True
-
-                # Verificacao da diagonal secundaria
-                if (tabuleiro[0][2] == jogador and
-                    tabuleiro[1][1] == jogador and
-                    tabuleiro[2][0] == jogador):
-
-                    venceu = True
-
-                # Guarda quem venceu
-                if venceu == True:
-
-                    jogador_vencedor = jogador
-
-                # Troca o jogador se ainda nao houve vitoria
-                else:
-
-                    if jogador == "X":
-                        jogador = "O"
-                    else:
-                        jogador = "X"
-
-            # =================================================
-            # EXIBE O TABULEIRO FINAL
-            # =================================================
-
-            print("\n===== TABULEIRO FINAL =====")
-            print("        COLUNAS")
-            print("        1   2   3")
+            # MOSTRAR TABULEIRO FINAL
+            print("\n========== RESULTADO DA PARTIDA ==========")
 
             for i in range(3):
-
-                print("LINHA", i + 1, end="  | ")
-
                 for j in range(3):
-
-                    print(tabuleiro[i][j], end="")
-
-                    if j < 2:
-                        print(" | ", end="")
-
-                print()
-
-                if i < 2:
-                    print("             -----------")
+                    print("|", tabuleiro[i][j], end=" ")
+                print("|")
 # =================================================
             # PARTE 3 - PLACAR E DESAFIO
             # RESPONSAVEL: INTEGRANTE 3
