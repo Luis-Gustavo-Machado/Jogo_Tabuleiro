@@ -146,27 +146,28 @@ while venceu == False and jogadas < 9:
         else:
             jogador = "X"
 
-#Exibe o tabuleiro final
+    # =================================================
+    # EXIBE O TABULEIRO FINAL
+    # =================================================
 
-print("=======FINAL DA PARTIDA========")
-print("        COLUNAS")
-print("        1   2   3")
+    print("\n===== TABULEIRO FINAL =====")
+    print("        COLUNAS")
+    print("        1   2   3")
 
+    for i in range(3):
 
-for i in range(3):
+        print("LINHA", i + 1, end="  | ")
 
-    print("LINHA", i + 1, end="  | ")
+        for j in range(3):
 
-    for j in range(3):
+            print(tabuleiro[i][j], end="")
 
-        print(tabuleiro[i][j], end="")
+            if j < 2:
+                print(" | ", end="")
 
-        if j < 2:
-            print(" | ", end="")
+        print()
 
-    print()
-
-    if i < 2:
-        print("              -----------")
+        if i < 2:
+            print("             -----------")
 
 partidas_serie = partidas_serie + 1
