@@ -197,25 +197,23 @@ if venceu == True:
 
 else:
 
-# Conta as casas livres usando for aninhado
-
+    # Conta as casas livres usando for aninhado
     casas_livres = 0
 
-for i in range(3):
-    for j in range(3):
+    for i in range(3):
+        for j in range(3):
 
-        if (tabuleiro[i][j] != "X" and
-            tabuleiro[i][j] != "O"):
+            if (tabuleiro[i][j] != "X" and
+                tabuleiro[i][j] != "O"):
 
-            casas_livres = casas_livres + 1
+                casas_livres = casas_livres + 1
 
-if casas_livres == 0:
+    if casas_livres == 0:
 
-    print("\nA partida terminou empatada!")
-    empates_total = empates_total + 1
+        print("\nA partida terminou empatada!")
+        empates_total = empates_total + 1
 
 # Exibe o placar acumulado
-
 print("\n===== PLACAR GERAL =====")
 print("Vitorias do jogador X:", vitorias_j1)
 print("Vitorias do jogador O:", vitorias_j2)
