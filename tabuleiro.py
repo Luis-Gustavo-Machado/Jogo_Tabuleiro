@@ -1,60 +1,88 @@
-# =====================================================
-# PARTE 1 - MENU E INICIALIZACAO
-# RESPONSAVEL: INTEGRANTE 1
-# =====================================================
-
-opcao = ""
-
-# Placar acumulado
+# PLACAR GERAL
 vitorias_j1 = 0
 vitorias_j2 = 0
-empates_total = 0
+empates = 0
+total_partidas = 0
 
-# Menu principal
-while opcao != "4":
-
+# MENU PRINCIPAL
+while True:
     print("\n========== JOGO DA VELHA ==========")
     print("1 - Jogar")
     print("2 - Regras")
-    print("3 - Ver placar")
+    print("3 - Placar")
     print("4 - Sair")
+    print("===================================")
 
-    opcao = input("Escolha uma opcao: ")
+    opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
 
-        print("\n===== CAMPEONATO MELHOR DE 3 =====")
-        print("Vence a serie quem ganhar 2 partidas.")
-
-        # Pontuacao da serie
         vitorias_serie_j1 = 0
         vitorias_serie_j2 = 0
-        partidas_serie = 0
 
-        # Criacao da matriz, linha por linha
-        tabuleiro = [
-            ["1", "2", "3"],
-            ["4", "5", "6"],
-            ["7", "8", "9"]
-        ]
+        print("\n========== CAMPEONATO ==========")
+        print("Melhor de 3 partidas!")
+        print("O primeiro jogador que conseguir 2 vitórias será o campeão.")
 
-        # A serie termina quando alguem ganhar 2 partidas
-        # ou quando forem realizadas 3 partidas.
-        while (vitorias_serie_j1 < 2 and
-               vitorias_serie_j2 < 2 and
-               partidas_serie < 3):
+        # CAMPEONATO
+        while vitorias_serie_j1 < 2 and vitorias_serie_j2 < 2:
 
-            # Prepara as posicoes do tabuleiro
-            for i in range(3):
-                for j in range(3):
-                    tabuleiro[i][j] = str(i * 3 + j + 1)
+            # MATRIZ DO TABULEIRO
+            tabuleiro = [
+                ["1", "2", "3"],
+                ["4", "5", "6"],
+                ["7", "8", "9"]
+            ]
 
-            jogador = "X"
-            venceu = False
-            jogador_vencedor = ""
+            jogador = 1
+            vencedor = 0
             jogadas = 0
 
-            print("\n===== NOVA PARTIDA =====")
+            # PARTIDA
+            while vencedor == 0 and jogadas < 9:
+
+                print("\n========== TABULEIRO ==========")
+
+                # EXIBIÇÃO DO TABULEIRO SEM LINHAS E COLUNAS EXTERNAS
+                for i in range(3):
+                    for j in range(3):
+                        print("|", tabuleiro[i][j], end=" ")
+                    print("|")
+
+                # DEFINIR SÍMBOLO DO JOGADOR
+                if jogador == 1:
+                    simbolo = "X"
+                    print("\nVez do JOGADOR 1 (X)")
+                else:
+                    simbolo = "O"
+                    print("\nVez do JOGADOR 2 (O)")
+
+                # ESCOLHER POSIÇÃO
+                posicao = input("Escolha uma posição de 1 a 9: ")
+
+                posicao_valida = False
+
+                # VALIDAR ENTRADA
+                for n in range(1, 10):
+                    if posicao == str(n):
+                        posicao_valida = True
+
+                if posicao_valida == False:
+                    print("Entrada inválida! Digite um número de 1 a 9.")
+
+                else:
+                    numero = int(posicao)
+
+                    linha = (numero - 1) // 3
+                    coluna = (numero - 1) % 3
+
+                    # VERIFICAR SE A POSIÇÃO ESTÁ OCUPADA
+                    if tabuleiro[linha][coluna] == "X" or tabuleiro[linha][coluna] == "O":
+                        print("Essa posição já está ocupada! Escolha outra.")
+
+                    else:
+                        tabuleiro[linha][coluna] = simbolo
+                        jogadas = jogadas + 1
 
             # =================================================
             # PARTE 2 - JOGABILIDADE E VALIDACAO
