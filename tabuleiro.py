@@ -1,57 +1,55 @@
-# Placar geral
+opcao = ""
+
+# Placar acumulado
 vitorias_j1 = 0
 vitorias_j2 = 0
-empates = 0
-total_partidas = 0
+empates_total = 0
 
 # Menu principal
-opcao = "0"
-
 while opcao != "4":
 
     print("\n========== JOGO DA VELHA ==========")
     print("1 - Jogar")
-    print("2 - Ver regras")
+    print("2 - Regras")
     print("3 - Ver placar")
     print("4 - Sair")
-    print("===================================")
 
-    opcao_valida = False
+    opcao = input("Escolha uma opcao: ")
 
-    while opcao_valida == False:
-        entrada = input("Escolha uma opção: ")
-
-        for n in range(1, 5):
-            if entrada == str(n):
-                opcao = entrada
-                opcao_valida = True
-
-        if opcao_valida == False:
-            print("Opção inválida! Digite de 1 a 4.")
-
-    # OPÇÃO 1 - JOGAR
     if opcao == "1":
 
+        print("\n===== CAMPEONATO MELHOR DE 3 =====")
+        print("Vence a serie quem ganhar 2 partidas.")
+
+        # Pontuacao da serie
         vitorias_serie_j1 = 0
         vitorias_serie_j2 = 0
+        partidas_serie = 0
 
-        print("\nCAMPEONATO MELHOR DE 3!")
-        print("Vence quem ganhar 2 partidas primeiro.")
+        # Criacao da matriz, linha por linha
+        tabuleiro = [
+            ["1", "2", "3"],
+            ["4", "5", "6"],
+            ["7", "8", "9"]
+        ]
 
-        # Repete enquanto ninguém alcançar 2 vitórias
-        while vitorias_serie_j1 < 2 and vitorias_serie_j2 < 2:
+        # A serie termina quando alguem ganhar 2 partidas
+        # ou quando forem realizadas 3 partidas.
+        while (vitorias_serie_j1 < 2 and
+               vitorias_serie_j2 < 2 and
+               partidas_serie < 3):
 
-            # Matriz do tabuleiro
-            tabuleiro = [
-                ["1", "2", "3"],
-                ["4", "5", "6"],
-                ["7", "8", "9"]
-            ]
+            # Prepara as posicoes do tabuleiro
+            for i in range(3):
+                for j in range(3):
+                    tabuleiro[i][j] = str(i * 3 + j + 1)
 
-            jogador = 1
-            partida_finalizada = False
+            jogador = "X"
+            venceu = False
+            jogador_vencedor = ""
+            jogadas = 0
 
-print("\n========== NOVA PARTIDA ==========")
+            print("\n===== NOVA PARTIDA =====")
 
 while venceu == False and jogadas < 9:
 
