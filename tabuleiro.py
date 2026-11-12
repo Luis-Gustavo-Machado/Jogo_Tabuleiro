@@ -17,26 +17,52 @@ while True:
 
     if opcao == "1":
 
+        # Escolher o tipo do campeonato
         vitorias_serie_j1 = 0
         vitorias_serie_j2 = 0
 
         print("\n========== CAMPEONATO ==========")
-        print("Melhor de 3 partidas!")
-        print("O primeiro jogador que conseguir 2 vitórias será o campeão.")
+        print("1 - Melhor de 3 partidas!")
+        print("2 - Melhor de 5 partidas")
 
-        # CAMPEONATO
-        while vitorias_serie_j1 < 2 and vitorias_serie_j2 < 2:
+        opcao_campeonato = input('Escolha o campeonanto: ')
 
-            # MATRIZ DO TABULEIRO
-            tabuleiro = [
-                ["1", "2", "3"],
-                ["4", "5", "6"],
-                ["7", "8", "9"]
+        while opcao_campeonato != '1' and opcao_campeonato != '2':
+            print('Opção inválida!')
+            opcao_campeonato = input('Escolha 1 ou 2: ')
+        if opcao_campeonato == '1':
+            vitorias_necessarias = 2
+            print('Campeonato melhor de 3!')
+        else:
+            vitorias_necessarias = 3
+            print('Campeonato melhor de 5!')
+
+            vitorias_serie_j1 = 0
+            vitorias_serie_j2 = 0
+
+        print('O primeiro jogador a conseguir', vitorias_necessarias, 'vitórias será o campeão!')
+
+        # MATRIZ DO TABULEIRO
+        tabuleiro = [
+            ["1", "2", "3"],
+            ["4", "5", "6"],
+            ["7", "8", "9"]
             ]
+        
+        # CAMPEONATO
+        while vitorias_serie_j1 < vitorias_necessarias and vitorias_serie_j2 < vitorias_necessarias:
+
+            #Limpa e reinicia o tabuleiro com for aninhado
+            for i in range(3):
+                for j in range(3):
+                    tabuleiro[i][j] = str(i * 3 + j + 1)
 
             jogador = 1
             vencedor = 0
+            empate = False
             jogadas = 0
+
+            #PAREI AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
             # PARTIDA
             while vencedor == 0 and jogadas < 9:
@@ -148,7 +174,7 @@ while True:
         # RESULTADO DO CAMPEONATO
         print("\n========== RESULTADO FINAL ==========")
 
-        if vitorias_serie_j1 == 2:
+        if vitorias_serie_j1 == vitorias_necessarias:
             print("JOGADOR 1 É O CAMPEÃO!")
 
         else:
