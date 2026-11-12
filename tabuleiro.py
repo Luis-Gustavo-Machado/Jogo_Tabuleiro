@@ -211,12 +211,31 @@ while True:
         print("Empates:", empates)
         print("Total de partidas:", total_partidas)
 
+        if total_partidas > 0:
+                porcentagem_j1 = (vitorias_j1 / total_partidas) * 100
+                porcentagem_j2 = (vitorias_j2 / total_partidas) * 100
+
+                print("Porcentagem de vitórias do Jogador 1:", porcentagem_j1, "%")
+                print("Porcentagem de vitórias do Jogador 2:", porcentagem_j2, "%")
+
+        else:
+            print("Ainda não existem partidas para calcular porcentagens.")
+
     elif opcao == "4":
+
         print("\n========== RESULTADO FINAL ==========")
         print("Total de partidas:", total_partidas)
         print("Vitórias do Jogador 1:", vitorias_j1)
         print("Vitórias do Jogador 2:", vitorias_j2)
         print("Empates:", empates)
+
+        if total_partidas > 0:
+            porcentagem_j1 = (vitorias_j1 / total_partidas) * 100
+            porcentagem_j2 = (vitorias_j2 / total_partidas) * 100
+
+            print("Porcentagem de vitórias do Jogador 1:", porcentagem_j1, "%")
+            print("Porcentagem de vitórias do Jogador 2:", porcentagem_j2, "%")
+
         print("\nObrigado por jogar!")
         break
 
