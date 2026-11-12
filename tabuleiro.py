@@ -62,14 +62,13 @@ while True:
             empate = False
             jogadas = 0
 
-            #PAREI AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
-
             # PARTIDA
-            while vencedor == 0 and jogadas < 9:
+            while vencedor == 0 and not empate and jogadas < 9:
 
                 print("\n========== TABULEIRO ==========")
 
                 # EXIBIÇÃO DO TABULEIRO SEM LINHAS E COLUNAS EXTERNAS
+
                 for i in range(3):
                     for j in range(3):
                         print("|", tabuleiro[i][j], end=" ")
@@ -83,56 +82,68 @@ while True:
                     simbolo = "O"
                     print("\nVez do JOGADOR 2 (O)")
 
-                # ESCOLHER POSIÇÃO
-                posicao = input("Escolha uma posição de 1 a 9: ")
-
+                # ESCOLHER E VALIDAR POSIÇÃO
                 posicao_valida = False
 
-                # VALIDAR ENTRADA
-                for n in range(1, 10):
-                    if posicao == str(n):
-                        posicao_valida = True
+                while not posicao_valida:
 
-                if posicao_valida == False:
-                    print("Entrada inválida! Digite um número de 1 a 9.")
+                    posicao = input("Escolha uma posição de 1 a 9: ")
 
-                else:
-                    numero = int(posicao)
+                    numero_encontrado = False
 
-                    linha = (numero - 1) // 3
-                    coluna = (numero - 1) % 3
+                    # VALIDAR SE A ENTRADA É UM NÚMERO DE 1 A 9
+                    for n in range(1, 10):
+                        if posicao == str(n):
+                            numero_encontrado = True
 
-                    # VERIFICAR SE A POSIÇÃO ESTÁ OCUPADA
-                    if tabuleiro[linha][coluna] == "X" or tabuleiro[linha][coluna] == "O":
-                        print("Essa posição já está ocupada! Escolha outra.")
+                            numero = int(posicao)
 
-                    else:
-                        tabuleiro[linha][coluna] = simbolo
-                        jogadas = jogadas + 1
+                            linha = (numero - 1) // 3
+                            coluna = (numero - 1) % 3
 
-            # VERIFICAR VITÓRIA NAS LINHAS
-                        for i in range(3):
-                            if tabuleiro[i][0] == simbolo and tabuleiro[i][1] == simbolo and tabuleiro[i][2] == simbolo:
-                                vencedor = jogador
+                            # VERIFICAR SE A CASA ESTÁ LIVRE
+                            if not (tabuleiro[linha][coluna] == "X" or tabuleiro[linha][coluna] == "O"):
+                                posicao_valida = True
 
-                        # VERIFICAR VITÓRIA NAS COLUNAS
-                        for j in range(3):
-                            if tabuleiro[0][j] == simbolo and tabuleiro[1][j] == simbolo and tabuleiro[2][j] == simbolo:
-                                vencedor = jogador
-
-                        # VERIFICAR VITÓRIA NAS DIAGONAIS
-                        if tabuleiro[0][0] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][2] == simbolo:
-                            vencedor = jogador
-
-                        if tabuleiro[0][2] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][0] == simbolo:
-                            vencedor = jogador
-
-                        # TROCAR DE JOGADOR
-                        if vencedor == 0:
-                            if jogador == 1:
-                                jogador = 2
                             else:
-                                jogador = 1
+                                print("Essa posição já está ocupada! Escolha outra.")
+
+                    if not numero_encontrado:
+                        print("Entrada inválida! Digite um número de 1 a 9.")
+
+                # MARCAR JOGADA
+                tabuleiro[linha][coluna] = simbolo
+                jogadas = jogadas + 1
+
+            # VERIFICAR VITÓRIA NAS COLUNAS
+                for j in range(3):
+                    if tabuleiro[0][j] == simbolo and tabuleiro[1][j] == simbolo and tabuleiro[2][j] == simbolo:
+                        vencedor = jogador
+
+                # VERIFICAR VITÓRIA NAS DIAGONAIS
+                if tabuleiro[0][0] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][2] == simbolo:
+                    vencedor = jogador
+
+                if tabuleiro[0][2] == simbolo and tabuleiro[1][1] == simbolo and tabuleiro[2][0] == simbolo:
+                    vencedor = jogador
+
+                # VERIFICAR EMPATE COM FOR ANINHADO
+                vazias = 0
+
+                for i in range(3):
+                    for j in range(3):
+                        if tabuleiro[i][j] != "X" and tabuleiro[i][j] != "O":
+                            vazias = vazias + 1
+
+                if vazias == 0 and vencedor == 0:
+                    empate = True
+
+                # TROCAR DE JOGADOR
+                if vencedor == 0 and not empate:
+                    if jogador == 1:
+                        jogador = 2
+                    else:
+                        jogador = 1
 
             # MOSTRAR TABULEIRO FINAL
             print("\n========== RESULTADO DA PARTIDA ==========")
