@@ -194,8 +194,8 @@ while True:
     elif opcao == "2":
         print("\n========== REGRAS DO JOGO ==========")
         print("1 - O jogo possui dois jogadores.")
-        print("2 - O Jogador 1 utiliza o símbolo X.")
-        print("3 - O Jogador 2 utiliza o símbolo O.")
+        print("2 - O Jogador 1 utiliza o X.")
+        print("3 - O Jogador 2 utiliza o O.")
         print("4 - Cada jogador escolhe uma posição de 1 a 9.")
         print("5 - Não é permitido escolher uma posição ocupada.")
         print("6 - Vence quem formar uma sequência de três símbolos.")
