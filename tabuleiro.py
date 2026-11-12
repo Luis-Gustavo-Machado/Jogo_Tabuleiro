@@ -115,6 +115,12 @@ while True:
                 tabuleiro[linha][coluna] = simbolo
                 jogadas = jogadas + 1
 
+            # VERIFICAR VITÓRIA NAS LINHAS
+            
+            for i in range(3):
+                if tabuleiro[i][0] == simbolo and tabuleiro[i][1] == simbolo and tabuleiro[i][2] == simbolo:
+                    vencedor = jogador
+
             # VERIFICAR VITÓRIA NAS COLUNAS
                 for j in range(3):
                     if tabuleiro[0][j] == simbolo and tabuleiro[1][j] == simbolo and tabuleiro[2][j] == simbolo:
